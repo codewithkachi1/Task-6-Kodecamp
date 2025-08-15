@@ -16,7 +16,9 @@ def register_student(username: str, password: str):
     save_students(students, filename)
     return {"message": "Student registered successfully"}
 
-
+@app.post("/login/")
+def login_student(username: str = Depends(authenticate_student)):
+    return {"message": "Student logged in successfully"}
 
 @app.get("/grades/")
 def get_grades(username: str = Depends(authenticate_student)):
